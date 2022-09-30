@@ -74,6 +74,43 @@ create table Bill
 )
 go
 
+-- Step 3: Create Constrain -> Primary Key & Foreign Key
+
+-- Primary Key
+
+alter table Contractt
+	add constraint PK_Contract primary key (Contract_Id);
+	go
+
+alter table Student
+	add constraint PK_Student primary key (Student_Id);
+	go
+
+alter table Room
+	add constraint PK_Room primary key (Room_Id, Area_Id);
+	go
+
+alter table Staff
+	add constraint PK_Staff primary key (Staff_Id);
+	go
+
+alter table Bill
+	add constraint PK_Bill primary key (Bill_Id);
+	go
+
+-- Foreign Key 
+
+alter table Contractt
+	add Student_Id nvarchar(50)
+	constraint FK_Contract_Student_Id
+		foreign key (Student_Id)
+		references Student(Student_Id);
+
+alter table Contractt
+	add Staff_Id nvarchar(20)
+	constraint FK_Contract_Staff_Id
+		foreign key (Staff_Id)
+		references Staff(Staff_Id);
 
 
  
